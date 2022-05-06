@@ -1,7 +1,7 @@
 //index.js siempre tiene que tener solo configuraciones
 const express = require("express");
 const productosRoutes = require("./api/productos");
-const router = require("./routes/index");
+//const router = require("./routes/index");
 
 const app = express();
 const port = process.env.PORT || 8080
@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended:false}))//para decodificar la url .
 
 app.set("view engine" ,"ejs")
 app.set("views","./views")
-app.use("/api/productos",productosRoutes);
+app.use("/",productosRoutes);
 
 //data
 let msn = [];
@@ -21,7 +21,7 @@ let msn = [];
 //para servidor en la nube
 
 //archivos estaticos
-//app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public"));
 
 //server
 const http = require("http");
@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
 
 //Routes
 
-app.use("/api", router);
+//app.use("/api", router);
 
 
 

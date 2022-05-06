@@ -61,7 +61,7 @@ class Contenedor {
 
     if (fs.existsSync(`./${this.nombre}`)) {
       let info = fs.readFileSync(`./${this.nombre}`, encodingFile);
-      console.log(info)
+      
       let archivoProducto = JSON.parse(info);
 
       return archivoProducto;

@@ -24,7 +24,8 @@ let storage = multer.diskStorage({
 
 let upload = multer({ storage });
 
-router.get("/form",(req,res)=>{
+router.get("/form", async(req,res)=>{
+  let data = await archivo.getAll();
   res.render("form")
 })
 

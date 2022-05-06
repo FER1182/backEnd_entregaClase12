@@ -16,7 +16,7 @@
     </header>
     <div class="container">
          <h1 style="text-transform: lowercase;">FORMULARIO PARA AGREGAR PRODUCTOS A LA PAGINA</h1>   
-        <form action="/api/productos/form", method="post">
+        <form action="/api/productos/form",onsubmit="return addInfo()", method="post">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Name</label>
                 <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -33,7 +33,11 @@
         </form>
         <div id="caja"></div>
         <script src="/socket.io/socket.io.js"></script>
-        <script src="./index.js"></script>
+        
+        <script>
+            console.log("soy fer")
+        </script>
+        <script src="../public/index.js"></script>
     </div>
     
 </body>

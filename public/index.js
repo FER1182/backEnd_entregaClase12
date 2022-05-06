@@ -1,5 +1,6 @@
 //canal de scocket departe del cliente
-const socket = io(); //abre canal de web socket y el servidor se prepara para escuchar conexcion
+console.log("ssssoooffff")
+ const socket = io(); //abre canal de web socket y el servidor se prepara para escuchar conexcion
 
 //com este escucha
 socket.on("mensage_back",(data)=>{
@@ -27,4 +28,4 @@ const addInfo=()=>{
     socket.emit("dataMsn", dataObj)
     document.querySelector("#msn").value = ""
     return false //para sacar el repintado de pantalla
-}
+} 
