@@ -25,7 +25,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io(); //abre canal de web socket y el servidor se prepara para escuchar conexcion
-
+        let today = new Date();
         //com este escucha
         socket.on("mensage_chat", (data) => {
             console.log("mande chat")
@@ -35,7 +35,7 @@
         const render1 = (data) => {
             let html1 = data.map(x => {
                 return `
-                    <p> ${x.mail} : ${x.msn}  </p>
+                    <p> ${x.mail} : ${x.dia}: ${x.msn}  </p>
             `
             }).join(" ") //con esto convertimos el array en string separado por espacio
 
@@ -44,7 +44,8 @@
         const addInfo = () => {
             let dataObj = {
                 mail: document.querySelector("#email").value,
-                msn: document.querySelector("#msn").value
+                msn: document.querySelector("#msn").value,
+                dia : today
             }
             socket.emit("dataMsn", dataObj)
             document.querySelector("#msn").value = ""
