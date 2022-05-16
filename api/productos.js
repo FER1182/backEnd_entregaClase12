@@ -26,11 +26,12 @@ let upload = multer({ storage });
 
 router.get("/form", async(req,res)=>{
   let data = await archivo.getAll();
-  res.render("form")
+  res.render("form",{data : data})
 })
 
 
 router.post("/form", (req, res) => {
+  let data = archivo.getAll();
   let newProduct = {
     name: req.body.name,
     price: req.body.price,
@@ -41,7 +42,7 @@ router.post("/form", (req, res) => {
  // res.send(
  //   `El archivo se guardo correctamente y el id del nuevo productos es ${idProductoAgregado}`
  // );
-  res.render("form")
+  res.render("form",{data: data})
 });
 
 router.get("/:id", async (req, res) => {

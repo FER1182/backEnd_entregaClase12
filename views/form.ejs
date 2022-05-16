@@ -15,11 +15,12 @@
         <%- include('partials/portada',{titulo:"Que me vaya bien"}); %>
     </header>
     <div class="container">
-         <h1 style="text-transform: lowercase;">FORMULARIO PARA AGREGAR PRODUCTOS A LA PAGINA</h1>   
-        <form action="/api/productos/form",onsubmit="return addInfo()", method="post">
+        <h1 style="text-transform: lowercase;">FORMULARIO PARA AGREGAR PRODUCTOS A LA PAGINA</h1>
+        <form action="/form" ,onsubmit="return addInfo()" , method="post">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Name</label>
-                <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" class="form-control" name="name" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="exa" class="form-label">Price</label>
@@ -31,15 +32,54 @@
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
-        <div id="caja"></div>
+        <div class="container">
+            <h1>PRODUCTOS</h1>
+            <table style="text-align: center;" class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Foto</th>
+                    </tr>
+                </thead>
+                <tbody id="caja">
+                </tbody>
+            </table>
+
+        </div>
+        <%- include('partials/mensajes'); %>
+
         <script src="/socket.io/socket.io.js"></script>
-        
         <script>
-            console.log("soy fer")
+            //const socket = io(); //abre canal de web socket y el servidor se prepara para escuchar conexcion
+            //con este escucha
+            socket.on("mensage_back", (cliente) => {
+                
+                socket.emit("mensaje_cliente", "hola servidor")
+                render(cliente)
+            })
+
+            const render = (data) => {
+                let html = data.map(x => {
+                    return `
+                        
+                                            <tr>
+                                                <td> ${x.name}</td>
+                                                <td> $ ${x.price}</td>
+                                                <td> <img src="${x.urlFoto}" class="img-fluid" alt="..."
+                                                        style="max-width: 50px; max-height: 50px;"> </td>
+                                            </tr>
+                            `
+                }).join(" ") //con esto convertimos el array en string separado por espacio
+
+                document.querySelector("#caja").innerHTML = html
+
+            }
+
+     
         </script>
-        <script type="text/javascript" src="../public/index.js"></script>
     </div>
-    
+
 </body>
 
 </html>
