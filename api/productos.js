@@ -37,7 +37,7 @@ router.post("/form", (req, res) => {
     price: req.body.price,
     urlFoto: req.body.urlFoto,
   };
-  //console.log(req.file);
+  
   let idProductoAgregado = archivo.save(newProduct);
  // res.send(
  //   `El archivo se guardo correctamente y el id del nuevo productos es ${idProductoAgregado}`
