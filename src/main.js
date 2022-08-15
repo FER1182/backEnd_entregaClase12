@@ -1,7 +1,7 @@
 //index.js siempre tiene que tener solo configuraciones
 const express = require("express");
-const productosRoutes = require("./api/productos");
-const Contenedor = require("./api/contenedor");
+const productosRoutes = require("../api/productos");
+const Contenedor = require("../api/contenedor");
 
 
 const app = express();
@@ -56,12 +56,6 @@ io.on("connection", (socket) => {
 
     });  
 });
-
-//Routes
-
-//app.use("/api", router);
-
-
 
 server.listen(port, () => {
   console.log("server oks");
